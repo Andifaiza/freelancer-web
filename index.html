@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkHive - Freelance Marketplace</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4f46e5', // Indigo 600
+                        'primary-hover': '#4338ca', // Indigo 700
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom smooth scroll */
+        html { scroll-behavior: smooth; }
+        /* Add some subtle transition for cards */
+        .hover-card-transition {
+            transition: all 0.3s ease;
+        }
+        .hover-card-transition:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <i class="fa-solid fa-hexagon-nodes text-primary text-3xl mr-2"></i>
+                    <span class="font-bold text-2xl tracking-tight text-gray-900">Work<span class="text-primary">Hive</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#categories" class="text-gray-600 hover:text-primary font-medium transition-colors">Find Talent</a>
+                    <a href="#freelancers" class="text-gray-600 hover:text-primary font-medium transition-colors">Find Work</a>
+                    <a href="#" class="text-gray-600 hover:text-primary font-medium transition-colors">Why WorkHive</a>
+                </div>
+                
+                <!-- Desktop CTA -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-primary font-medium transition-colors">Log In</a>
+                    <a href="#" class="bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-full font-medium transition-colors shadow-sm shadow-indigo-200">Sign Up</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-gray-900 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#categories" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Find Talent</a>
+                <a href="#freelancers" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Find Work</a>
+                <a href="#" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Log In</a>
+                <a href="#" class="block mt-4 text-center bg-primary text-white px-5 py-3 rounded-md font-medium">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                <!-- Hero Content -->
+                <div class="text-center lg:text-left z-10">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-indigo-50 text-primary font-medium text-sm mb-6 border border-indigo-100">
+                        <span class="flex h-2 w-2 rounded-full bg-primary mr-2"></span>
+                        Trusted by 10,000+ businesses worldwide
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                        Find the perfect <br class="hidden lg:block" />
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">freelance services</span> <br class="hidden lg:block" />
+                        for your business
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
+                        Work with talented people at the most affordable price to get the most out of your time and cost.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#freelancers" class="bg-primary hover:bg-primary-hover text-white px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-lg shadow-indigo-200 text-center flex items-center justify-center">
+                            Find a Freelancer <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#" class="bg-white hover:bg-gray-50 text-gray-800 border border-gray-300 px-8 py-4 rounded-full font-semibold text-lg transition-all text-center flex items-center justify-center">
+                            Earn Money Freelancing
+                        </a>
+                    </div>
+                    <!-- Popular search -->
+                    <div class="mt-8 text-sm text-gray-500 flex flex-wrap justify-center lg:justify-start items-center gap-2">
+                        <span class="font-medium mr-2">Popular:</span>
+                        <span class="px-3 py-1 bg-white border border-gray-200 rounded-full cursor-pointer hover:border-primary hover:text-primary transition-colors">Web Design</span>
+                        <span class="px-3 py-1 bg-white border border-gray-200 rounded-full cursor-pointer hover:border-primary hover:text-primary transition-colors">Logo Design</span>
+                        <span class="px-3 py-1 bg-white border border-gray-200 rounded-full cursor-pointer hover:border-primary hover:text-primary transition-colors">SEO</span>
+                    </div>
+                </div>
+                
+                <!-- Hero Image (Abstract/Dashboard representation) -->
+                <div class="relative hidden lg:block">
+                    <!-- Decorative blobs -->
+                    <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob"></div>
+                    <div class="absolute top-0 -right-4 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000"></div>
+                    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-4000"></div>
+                    
+                    <!-- Main Image/Card Graphic -->
+                    <div class="relative bg-white rounded-2xl shadow-2xl p-4 border border-gray-100 z-10 transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Team collaborating" class="rounded-xl w-full object-cover h-80">
+                        <!-- Floating Badge -->
+                        <div class="absolute -left-8 top-1/4 bg-white p-4 rounded-xl shadow-xl border border-gray-100 flex items-center space-x-4 animate-bounce" style="animation-duration: 3s;">
+                            <div class="bg-green-100 p-3 rounded-full text-green-600">
+                                <i class="fa-solid fa-check-double text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 font-medium">Project Completed</p>
+                                <p class="font-bold text-gray-900">100% Satisfaction</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Browse talent by category</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Get some inspiration from 1800+ skills and find the exact professional you need.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Category 1 -->
+                <div class="bg-gray-50 rounded-2xl p-6 hover-card-transition cursor-pointer border border-gray-100 group">
+                    <div class="w-14 h-14 bg-indigo-100 text-primary rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Development & IT</h3>
+                    <p class="text-gray-500 mb-4">Software Eng, Web Dev, Mobile App...</p>
+                    <div class="flex items-center text-primary font-medium text-sm">
+                        <span>4.8/5</span>
+                        <i class="fa-solid fa-star text-yellow-400 ml-1 mr-2 text-xs"></i>
+                        <span class="text-gray-400">1,853 skills</span>
+                    </div>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="bg-gray-50 rounded-2xl p-6 hover-card-transition cursor-pointer border border-gray-100 group">
+                    <div class="w-14 h-14 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-pink-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Design & Creative</h3>
+                    <p class="text-gray-500 mb-4">Logo Design, UI/UX, Illustration...</p>
+                    <div class="flex items-center text-primary font-medium text-sm">
+                        <span>4.9/5</span>
+                        <i class="fa-solid fa-star text-yellow-400 ml-1 mr-2 text-xs"></i>
+                        <span class="text-gray-400">920 skills</span>
+                    </div>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="bg-gray-50 rounded-2xl p-6 hover-card-transition cursor-pointer border border-gray-100 group">
+                    <div class="w-14 h-14 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Digital Marketing</h3>
+                    <p class="text-gray-500 mb-4">SEO, Social Media, Email Mktg...</p>
+                    <div class="flex items-center text-primary font-medium text-sm">
+                        <span>4.7/5</span>
+                        <i class="fa-solid fa-star text-yellow-400 ml-1 mr-2 text-xs"></i>
+                        <span class="text-gray-400">512 skills</span>
+                    </div>
+                </div>
+
+                <!-- Category 4 -->
+                <div class="bg-gray-50 rounded-2xl p-6 hover-card-transition cursor-pointer border border-gray-100 group">
+                    <div class="w-14 h-14 bg-yellow-100 text-yellow-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-yellow-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Writing & Trans</h3>
+                    <p class="text-gray-500 mb-4">Copywriting, Translation, Editing...</p>
+                    <div class="flex items-center text-primary font-medium text-sm">
+                        <span>4.8/5</span>
+                        <i class="fa-solid fa-star text-yellow-400 ml-1 mr-2 text-xs"></i>
+                        <span class="text-gray-400">305 skills</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center text-primary font-semibold hover:text-primary-hover transition-colors">
+                    View all categories <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Freelancers Section -->
+    <section id="freelancers" class="py-20 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Freelancers</h2>
+                    <p class="text-lg text-gray-600">Work with the network of independent professionals and get things done.</p>
+                </div>
+                <div class="mt-6 md:mt-0">
+                    <a href="#" class="bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-full font-medium hover:bg-gray-50 transition-colors inline-block">
+                        See All Freelancers
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Freelancer 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden hover-card-transition border border-gray-200">
+                    <div class="h-24 bg-gradient-to-r from-blue-400 to-indigo-500"></div>
+                    <div class="px-6 pb-6 relative">
+                        <img src="https://placehold.co/100x100/4f46e5/ffffff?text=SJ" alt="Sarah J" class="w-20 h-20 rounded-full border-4 border-white absolute -top-10 left-6 object-cover shadow-sm">
+                        <div class="flex justify-end pt-3">
+                            <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full"><i class="fa-solid fa-bolt mr-1"></i> Available</span>
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-xl font-bold text-gray-900">Sarah Jenkins</h3>
+                            <p class="text-primary font-medium text-sm mb-3">Senior Frontend Developer</p>
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-2">Specializing in React, Vue, and modern responsive UI development with Tailwind CSS.</p>
+                            
+                            <div class="flex justify-between items-center mb-4 pb-4 border-b border-gray-100">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                    <span class="ml-1 font-bold text-gray-700">4.9</span>
+                                    <span class="text-gray-400 text-sm ml-1">(120)</span>
+                                </div>
+                                <div class="font-bold text-gray-900">
+                                    $45 <span class="text-gray-500 text-sm font-normal">/ hr</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-white border border-primary text-primary hover:bg-primary hover:text-white py-2.5 rounded-xl font-semibold transition-colors">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Freelancer 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden hover-card-transition border border-gray-200">
+                    <div class="h-24 bg-gradient-to-r from-pink-400 to-rose-500"></div>
+                    <div class="px-6 pb-6 relative">
+                        <img src="https://placehold.co/100x100/ec4899/ffffff?text=MC" alt="Mike C" class="w-20 h-20 rounded-full border-4 border-white absolute -top-10 left-6 object-cover shadow-sm">
+                        <div class="flex justify-end pt-3">
+                            <span class="bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded-full">Busy</span>
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-xl font-bold text-gray-900">Mike Chen</h3>
+                            <p class="text-primary font-medium text-sm mb-3">UI/UX Designer</p>
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-2">I create beautiful, usable, and conversion-focused interfaces for web and mobile apps.</p>
+                            
+                            <div class="flex justify-between items-center mb-4 pb-4 border-b border-gray-100">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                    <span class="ml-1 font-bold text-gray-700">5.0</span>
+                                    <span class="text-gray-400 text-sm ml-1">(85)</span>
+                                </div>
+                                <div class="font-bold text-gray-900">
+                                    $60 <span class="text-gray-500 text-sm font-normal">/ hr</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-white border border-primary text-primary hover:bg-primary hover:text-white py-2.5 rounded-xl font-semibold transition-colors">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Freelancer 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden hover-card-transition border border-gray-200">
+                    <div class="h-24 bg-gradient-to-r from-green-400 to-emerald-500"></div>
+                    <div class="px-6 pb-6 relative">
+                        <img src="https://placehold.co/100x100/10b981/ffffff?text=AR" alt="Alina R" class="w-20 h-20 rounded-full border-4 border-white absolute -top-10 left-6 object-cover shadow-sm">
+                        <div class="flex justify-end pt-3">
+                            <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full"><i class="fa-solid fa-bolt mr-1"></i> Available</span>
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-xl font-bold text-gray-900">Alina Rostova</h3>
+                            <p class="text-primary font-medium text-sm mb-3">SEO & Digital Marketer</p>
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-2">Helping brands rank #1 on Google and building high-converting ad campaigns.</p>
+                            
+                            <div class="flex justify-between items-center mb-4 pb-4 border-b border-gray-100">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                    <span class="ml-1 font-bold text-gray-700">4.8</span>
+                                    <span class="text-gray-400 text-sm ml-1">(210)</span>
+                                </div>
+                                <div class="font-bold text-gray-900">
+                                    $35 <span class="text-gray-500 text-sm font-normal">/ hr</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-white border border-primary text-primary hover:bg-primary hover:text-white py-2.5 rounded-xl font-semibold transition-colors">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Freelancer 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden hover-card-transition border border-gray-200">
+                    <div class="h-24 bg-gradient-to-r from-yellow-400 to-orange-500"></div>
+                    <div class="px-6 pb-6 relative">
+                        <img src="https://placehold.co/100x100/f59e0b/ffffff?text=DL" alt="David L" class="w-20 h-20 rounded-full border-4 border-white absolute -top-10 left-6 object-cover shadow-sm">
+                        <div class="flex justify-end pt-3">
+                            <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full"><i class="fa-solid fa-bolt mr-1"></i> Available</span>
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-xl font-bold text-gray-900">David Lee</h3>
+                            <p class="text-primary font-medium text-sm mb-3">Expert Copywriter</p>
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-2">Crafting words that sell. Experienced in landing pages, emails, and brand messaging.</p>
+                            
+                            <div class="flex justify-between items-center mb-4 pb-4 border-b border-gray-100">
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                    <span class="ml-1 font-bold text-gray-700">4.9</span>
+                                    <span class="text-gray-400 text-sm ml-1">(94)</span>
+                                </div>
+                                <div class="font-bold text-gray-900">
+                                    $50 <span class="text-gray-500 text-sm font-normal">/ hr</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-white border border-primary text-primary hover:bg-primary hover:text-white py-2.5 rounded-xl font-semibold transition-colors">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call To Action -->
+    <section class="py-20 bg-primary relative overflow-hidden">
+        <!-- Background decorative pattern -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Ready to get your work done?</h2>
+            <p class="text-indigo-100 text-lg md:text-xl mb-10 max-w-2xl mx-auto">Join thousands of businesses who use WorkHive to scale their operations and achieve their goals.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <button class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl">
+                    Post a Job - It's Free
+                </button>
+                <button class="bg-transparent border border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-indigo-700 transition-colors">
+                    Join as a Freelancer
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+                <!-- Brand col -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center cursor-pointer mb-6">
+                        <i class="fa-solid fa-hexagon-nodes text-primary text-3xl mr-2"></i>
+                        <span class="font-bold text-2xl tracking-tight text-white">Work<span class="text-primary">Hive</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-sm">The premier freelance marketplace for businesses to find top talent and for professionals to find great work.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors text-white"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors text-white"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors text-white"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors text-white"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links col 1 -->
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-6">For Clients</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:text-white transition-colors">How to hire</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Talent Marketplace</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Project Catalog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Enterprise</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links col 2 -->
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-6">For Talent</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:text-white transition-colors">How to find work</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Direct Contracts</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Find freelance jobs</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Community</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links col 3 -->
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-6">Resources</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:text-white transition-colors">Help & Support</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Success Stories</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Trust & Safety</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-500 mb-4 md:mb-0">&copy; 2026 WorkHive Global Inc. All rights reserved.</p>
+                <div class="flex space-x-6 text-sm text-gray-500">
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu and interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const navbar = document.getElementById('navbar');
+
+            // Toggle mobile menu
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                const icon = btn.querySelector('i');
+                if(menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            });
+
+            // Close menu when clicking a link
+            const menuLinks = menu.querySelectorAll('a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    const icon = btn.querySelector('i');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                });
+            });
+
+            // Navbar shadow on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    navbar.classList.add('shadow-md');
+                    navbar.classList.remove('shadow-sm');
+                } else {
+                    navbar.classList.remove('shadow-md');
+                    navbar.classList.add('shadow-sm');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
